@@ -54,6 +54,7 @@ routes.put("/update/:name", (req, res) => {
 });
 
 routes.delete("/delete/:name", (req, res) => {
+
     ActorsModel.findOne({ name: req.params.name }, (err, actor) => {
         if (!err && actor == null) return res.sendStatus(404);
     
@@ -62,6 +63,7 @@ routes.delete("/delete/:name", (req, res) => {
           else res.sendStatus(507);
         });
       });
+      
 });
 
 module.exports = routes;
