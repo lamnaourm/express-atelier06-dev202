@@ -31,4 +31,37 @@ routes.get("/movies", (req, res) => {
   });
 });
 
+routes.post("/add", (req, res) => {
+  const actor = req.body;
+  const newActor = new ActorsModel(actor);
+  newActor.save((err, actor) => {
+    if (!err) res.status(201).json(actor);
+    else res.sendStatus(507);
+  });
+});
+
+routes.put("/update/:name", (req, res) => {
+
+  ActorsModel.findOne({ name: req.params.name }, (err, actor) => {
+    if (!err && actor == null) return res.sendStatus(404);
+
+    ActorsModel.updateOne({ name: req.params.name }, req.body, (err, actor) => {
+      if (!err) res.status(201).json(actor);
+      else res.sendStatus(507);
+    });
+  });
+
+});
+
+routes.delete("/delete/:name", (req, res) => {
+    ActorsModel.findOne({ name: req.params.name }, (err, actor) => {
+        if (!err && actor == null) return res.sendStatus(404);
+    
+        ActorsModel.deleteOne({ name: req.params.name }, (err, actor) => {
+          if (!err) res.status(201).json(actor);
+          else res.sendStatus(507);
+        });
+      });
+});
+
 module.exports = routes;
