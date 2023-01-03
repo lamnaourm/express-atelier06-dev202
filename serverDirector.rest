@@ -1,7 +1,32 @@
-GET http://localhost:3000/actor/all
-
-###
 GET http://localhost:3000/director/all
 
 ###
-GET http://localhost:3000/movie/all
+GET http://localhost:3000/director/names
+
+###
+GET http://localhost:3000/director/movies
+
+###
+POST http://localhost:3000/director/add
+Content-Type: application/json
+
+{
+    "name": "Zaid",
+  "birthname": "Zaid Sandler",
+  "birthdate": "2015-09-09",
+  "birthplace": "Tetouan"
+}
+
+###
+PUT http://localhost:3000/director/update/Zaid
+Content-Type: application/json
+
+{
+    "name": "Zaid",
+  "birthname": "Zaid ghhgh",
+  "birthdate": "2015-01-01",
+  "birthplace": "Martil"
+}
+
+###
+DELETE http://localhost:3000/director/delete/Zaid
